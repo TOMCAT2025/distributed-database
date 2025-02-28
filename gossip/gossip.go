@@ -198,8 +198,6 @@ func (g *Gossip) ReceiveDigest(data SyncData) {
 
 	// 比较摘要，找出需要同步的数据
 	for id, remoteVersion := range data.Digest {
-		//needSync存放的是：本地版本小于远程节点的数据（需要更新操作）
-		//					本地没有但是远程有的数据(需要)
 		localVersion, exists := localDigest[id]
 		if !exists || localVersion < remoteVersion {
 			needSync = append(needSync, id)
