@@ -19,7 +19,7 @@
 ### 数据一致性
 使用最终一致性 Gossip 协议进行节点间的数据同步。
 Gossip同步的触发通过select和channel实现，触发有两种方式  
-                        1.定时器触发，间隔时间为Interval `yaml:"interval"`  
+                        1.定时器触发，间隔事件为Interval `yaml:"interval"`  
                         2.监听g.syncChan通道触发（立即同步通过该途径实现）  
                         当外部用户通过API进行了增删查改操作时，会调用gossip包下的TriggerSync()函数，向syncChan发一个空结构体触发立即同步  
 同步操作中加了一个摘要，对比出需要同步的数据，只对这一部分数据同步，可以减少对内存的写操作，提升速度

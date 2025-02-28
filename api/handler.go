@@ -13,7 +13,6 @@ import (
 )
 
 func RegisterRoutes(router *gin.Engine, db *skiplist.SkipList, sync *gossip.Gossip, ed *expirationDelete.ExpirationDelete) {
-	//func RegisterRoutes(router *gin.Engine, db *skiplist.SkipList, sync *gossip.Gossip) {
 	// AddStudent 接口
 	router.POST("/AddStudent", func(c *gin.Context) {
 		var student skiplist.Student
@@ -60,7 +59,6 @@ func RegisterRoutes(router *gin.Engine, db *skiplist.SkipList, sync *gossip.Goss
 		student.Deleted = true
 		student.Version = time.Now().UnixNano()
 		db.Update(*student)
-		//db.Delete(student.ID)
 		// 触发同步
 		sync.TriggerSync()
 		c.JSON(http.StatusOK, gin.H{"message": "student deleted"})
