@@ -1,0 +1,18 @@
+thread_model: "select_channel"
+consistency_algorithm: "gossip"
+data_structure: "skiplist"
+gossip:
+  interval: 10s
+  nodes:
+    - address: "localhost:8080"
+    - address: "localhost:8081"
+database:
+  type: "mysql"
+  host: "localhost"
+  port: 3306
+  user: "root"
+  password: "2588522"
+  dbname: "students"
+port: 8081
+expiration_delete:
+  expiration_time: 60s
